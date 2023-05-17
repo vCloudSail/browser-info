@@ -1,0 +1,44 @@
+{
+  "name": "@cloudsail/browser-info",
+  "private": false,
+  "version": "0.0.1",
+  "type": "module",
+  "files": [
+    "dist",
+    "index.d.ts"
+  ],
+  "main": "./dist/index.umd.cjs",
+  "module": "./dist/index.js",
+  "types": "./index.d.ts",
+  "exports": {
+    "types": "./index.d.ts",
+    "import": "./dist/index.js",
+    "require": "./dist/index.umd.cjs"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "clear": "rimraf node_modules && rimraf package-lock.json && rimraf .eslintcache && rimraf pnpm-lock.yaml && rimraf yarn.lock",
+    "reinstall": "npm run clear && yarn",
+    "prepublish": "npm config set registry https://registry.npmjs.org && npm run build",
+    "postpublish": "npm config set registry https://registry.npm.taobao.org"
+  },
+  "dependencies": {
+    "core-js": "^3.24.1"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^24.0.1",
+    "@vitejs/plugin-vue": "^4.2.3",
+    "@vitejs/plugin-vue-jsx": "^3.0.1",
+    "element-plus": "^2.3.4",
+    "rimraf": "^5.0.0",
+    "rollup-plugin-external-globals": "^0.7.3",
+    "rollup-plugin-visualizer": "^5.9.0",
+    "sass": "~1.32.13",
+    "sass-loader": "^10.1.1",
+    "vite": "^4.0.4",
+    "vite-plugin-require-transform": "^1.0.9",
+    "vue": "^3.3.2",
+    "vue-tsc": "^1.6.5"
+  }
+}
