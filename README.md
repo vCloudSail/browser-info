@@ -11,7 +11,8 @@ npm i @cloudsail/browser-info -S
 ```
 
 ### 使用
-
+- window: window.$browserInfo
+- export: browserInfo
 #### 基础使用
 
 ```javascript
@@ -21,7 +22,7 @@ import BrowserInfo, { getBrowerInfo } from "@cloudsail/browser-info";
 const info = getBrowerInfo()
 ```
 
-###全局变量使用
+#### 全局变量使用
 
 ```javascript
 import "@cloudsail/browser-info";
@@ -33,19 +34,35 @@ if(window.$browserInfo.terminalType === 'PC')
 ```
 
 
-#### vue响应式
+#### vue使用
 
 ```javascript
-import "@cloudsail/browser-info";
+import BrowserInfo from  "@cloudsail/browser-info";
+
+
 
 
 // vue3
 import { ref } from "vue";
-window.$browserInfo = ref(window.$browserInfo).value
+
+// 转换为响应式
+Vue.config.globalProperties.$browserInfo = ref(window.$browserInfo)
 
 // vue2
 import Vue from "vue";
-window.$browserInfo = Vue.observable(window.$browserInfo)
+
+Vue.prototype.$browserInfo = Vue.observable(window.$browserInfo)
+
+
+// 组件内使用
+
+export default defineComponent({
+  method(){
+    aa(){
+      const os = this.$browserInfo.os
+    }
+  }
+})
 
 ```
 

@@ -1,6 +1,6 @@
-export namespace BrowerInfo {
+export declare namespace BrowserInfo {
   /** 浏览器内核 */
-  export interface BrowerCoreType {
+  export interface BrowserCoreType {
     /** Mozilla Firefox */
     Gecko
     KHTML
@@ -14,7 +14,7 @@ export namespace BrowerInfo {
   }
 
   /** 套壳浏览器类型 */
-  // export interface BrowerShellNames {
+  // export interface BrowserShellNames {
   //   /** QQ浏览器 */
   //   QQ浏览器
   //   '360浏览器'
@@ -26,7 +26,7 @@ export namespace BrowerInfo {
   // }
 
   /** 浏览器类型 */
-  export interface BrowerType {
+  export interface BrowserType {
     IE
     Chrome
     /** 谷歌开源浏览器，国产\部分手机浏览器大部分基于此开发 */
@@ -55,7 +55,7 @@ export namespace BrowerInfo {
   }
 
   /** 内部浏览器类型 */
-  export interface InnerBrowerType {
+  export interface InnerBrowserType {
     /** QQ内部浏览器 */
     QQ
     /** 微信内部浏览器 */
@@ -98,14 +98,15 @@ export namespace BrowerInfo {
     360
   }
 
-  export interface BrowerInfoInstance {
+  export interface BrowserInfoInstance {
+    $ua: Window['navigator']['userAgent']
     name: string
     /** 浏览器类型 */
-    type: keyof BrowerType
+    type: keyof BrowserType
     /** 浏览器版本 */
     version: string
     /** 浏览器内核 */
-    core: keyof BrowerCoreType
+    core: keyof BrowserCoreType
     /** 浏览器内核版本 */
     coreVersion: string
     /** 操作系统 */
@@ -119,10 +120,33 @@ export namespace BrowerInfo {
   }
 }
 
+// declare module 'vue/types/vue' {
+//   // vue2
+//   interface Vue {
+//     $browserInfo: BrowserInfo.BrowserInfoInstance
+//   }
+// }
+// declare module 'vue' {
+//   // vue3
+//   interface ComponentCustomProperties {
+//     $browserInfo: BrowserInfo.BrowserInfoInstance
+//   }
+// }
+
 declare global {
   declare interface Window {
-    $browserInfo: BrowerInfo.BrowerInfoInstance
+    $browserInfo: BrowserInfo.BrowserInfoInstance
   }
-  const $browserInfo: BrowerInfo.BrowerInfoInstance
+  const $browserInfo: BrowserInfo.BrowserInfoInstance
 }
 
+const browserInfo: BrowserInfo.BrowserInfoInstance
+
+/**
+ * 获取浏览器信息，如果传入了info，则更新此对象
+ */
+export function getBrowserInfo(
+  info?: BrowserInfo.BrowserInfoInstance
+): BrowserInfo.BrowserInfoInstance
+
+export default browserInfo

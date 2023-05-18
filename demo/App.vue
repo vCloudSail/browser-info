@@ -1,22 +1,20 @@
 <template>
   <div id="main">
+    <el-button @click="test">{{ a.count }}</el-button>
     <el-descriptions title="浏览器信息" :column="1" border>
       <el-descriptions-item
         v-for="item in browerInfoTemplate"
         :key="item.prop"
         :label="item.name"
       >
-        {{ browserInfo[item.prop] }}
+        {{ $browserInfo?.[item.prop] }}
       </el-descriptions-item>
     </el-descriptions>
   </div>
 </template>
 
-<script >
-import BrowserInfo, { getBrowerInfo } from "@/main";
-import { defineComponent, reactive, ref, toRef, toRefs } from "vue";
-
-window.$browserInfo = ref(window.$browserInfo).value
+<script>
+import { defineComponent, reactive, ref, toRef, toRefs, watch } from "vue";
 
 /**
  * vue-comp
@@ -37,7 +35,11 @@ export default defineComponent({
   // #region 数据相关
   data() {
     return {
-      browserInfo: window.$browserInfo,
+      a: {
+        count: 1,
+      },
+      browserInfo: null,
+
       browerInfoTemplate: [
         {
           name: "浏览器名称",
@@ -89,11 +91,25 @@ export default defineComponent({
   // #region 生命周期
   created() {},
   mounted() {
-    console.log(window.$browserInfo);
+    this.browserInfo = window.$browserInfo;
+    console.log("window", window.$browserInfo);
+    console.log("vue", this.$browserInfo);
+    window.addEventListener("ua-change", () => {
+      // console.log("window", window.$browserInfo);
+      // console.log("vue", this.$browserInfo);
+      // this.browserInfo = window.$browserInfo;
+      this.$forceUpdate();
+    });
   },
   // #endregion
 
-  methods: {},
+  methods: {
+    test() {
+      this.a = {
+        count: Date.now(),
+      };
+    },
+  },
 });
 </script>
 
