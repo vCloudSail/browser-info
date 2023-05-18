@@ -256,13 +256,13 @@ export function getBrowerInfo(info) {
  */
 const BrowerInfo = getBrowerInfo()
 
-window.browserInfo = BrowerInfo
+window.$browserInfo = BrowerInfo
 
 window.addEventListener(
   'resize',
   () => {
     if (window.navigator.userAgent !== BrowerInfo.$ua) {
-      getBrowerInfo(window.browserInfo)
+      getBrowerInfo(window.$browserInfo)
     }
   },
   {

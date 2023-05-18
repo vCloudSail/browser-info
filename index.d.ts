@@ -1,4 +1,4 @@
-export namespace Brower {
+export namespace BrowerInfo {
   /** 浏览器内核 */
   export interface BrowerCoreType {
     /** Mozilla Firefox */
@@ -14,16 +14,16 @@ export namespace Brower {
   }
 
   /** 套壳浏览器类型 */
-  export interface BrowerShellNames {
-    /** QQ浏览器 */
-    QQ浏览器
-    '360浏览器'
-    猎豹浏览器
-    百度浏览器
-    搜狗浏览器
-    世界之窗浏览器
-    世界之窗极速浏览器
-  }
+  // export interface BrowerShellNames {
+  //   /** QQ浏览器 */
+  //   QQ浏览器
+  //   '360浏览器'
+  //   猎豹浏览器
+  //   百度浏览器
+  //   搜狗浏览器
+  //   世界之窗浏览器
+  //   世界之窗极速浏览器
+  // }
 
   /** 浏览器类型 */
   export interface BrowerType {
@@ -47,7 +47,10 @@ export namespace Brower {
     Mobile
     /** 平板端 */
     // Pad
-    /** 电视端 */
+    /**
+     * 电视端(暂时不支持)
+     * @deprecated
+     */
     TV
   }
 
@@ -95,7 +98,7 @@ export namespace Brower {
     360
   }
 
-  export interface BrowerInfo {
+  export interface BrowerInfoInstance {
     name: string
     /** 浏览器类型 */
     type: keyof BrowerType
@@ -118,8 +121,8 @@ export namespace Brower {
 
 declare global {
   declare interface Window {
-    browserInfo: Brower.BrowerInfo
+    $browserInfo: BrowerInfo.BrowerInfoInstance
   }
-  const browserInfo: Brower.BrowerInfo
+  const $browserInfo: BrowerInfo.BrowerInfoInstance
 }
 

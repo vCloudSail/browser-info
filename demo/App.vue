@@ -16,7 +16,7 @@
 import BrowserInfo, { getBrowerInfo } from "@/main";
 import { defineComponent, reactive, ref, toRef, toRefs } from "vue";
 
-window.browserInfo = ref(window.browserInfo).value
+window.$browserInfo = ref(window.$browserInfo).value
 
 /**
  * vue-comp
@@ -37,7 +37,7 @@ export default defineComponent({
   // #region 数据相关
   data() {
     return {
-      browserInfo: window.browserInfo,
+      browserInfo: window.$browserInfo,
       browerInfoTemplate: [
         {
           name: "浏览器名称",
@@ -89,7 +89,7 @@ export default defineComponent({
   // #region 生命周期
   created() {},
   mounted() {
-    console.log(window.browserInfo);
+    console.log(window.$browserInfo);
   },
   // #endregion
 
