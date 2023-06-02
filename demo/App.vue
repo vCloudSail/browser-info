@@ -38,8 +38,6 @@ export default defineComponent({
       a: {
         count: 1,
       },
-      browserInfo: null,
-
       browerInfoTemplate: [
         {
           name: "浏览器名称",
@@ -81,26 +79,13 @@ export default defineComponent({
     };
   },
   computed: {
-    // browserInfo() {
-    //   return getBrowerInfo();
-    // },
   },
   watch: {},
   // #endregion
 
   // #region 生命周期
   created() {},
-  mounted() {
-    this.browserInfo = window.$browserInfo;
-    console.log("window", window.$browserInfo);
-    console.log("vue", this.$browserInfo);
-    window.addEventListener("ua-change", () => {
-      // console.log("window", window.$browserInfo);
-      // console.log("vue", this.$browserInfo);
-      // this.browserInfo = window.$browserInfo;
-      this.$forceUpdate();
-    });
-  },
+  mounted() {},
   // #endregion
 
   methods: {

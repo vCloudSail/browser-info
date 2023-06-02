@@ -1,8 +1,8 @@
 {
   "name": "@cloudsail/browser-info",
-  "private": true,
-  "version": "0.0.1",
+  "version": "0.0.2",
   "type": "module",
+  "private": true,
   "files": [
     "dist",
     "index.d.ts"
@@ -10,8 +10,15 @@
   "main": "./dist/index.umd.cjs",
   "module": "./dist/index.js",
   "types": "./index.d.ts",
+  "license": "MIT",
   "workspaces": [
     "./"
+  ],
+  "keywords": [
+    "browser",
+    "browser-info",
+    "ua",
+    "user-agent"
   ],
   "exports": {
     "types": "./index.d.ts",
@@ -23,8 +30,11 @@
     "build": "vite build",
     "clear": "rimraf node_modules && rimraf package-lock.json && rimraf .eslintcache && rimraf pnpm-lock.yaml && rimraf yarn.lock",
     "reinstall": "npm run clear && yarn",
-    "prepublish": "npm config set registry https://registry.npmjs.org && npm run build",
-    "postpublish": "npm config set registry https://registry.npm.taobao.org"
+    "pub": "npm publish --access public",
+    "prepublishOnly": "npm run build"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
   },
   "dependencies": {
     "core-js": "^3.24.1",

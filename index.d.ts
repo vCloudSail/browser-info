@@ -27,15 +27,23 @@ export declare namespace BrowserInfo {
 
   /** 浏览器类型 */
   export interface BrowserType {
+    /** IE浏览器 */
     IE
+    /** 谷歌浏览器 */
     Chrome
     /** 谷歌开源浏览器，国产\部分手机浏览器大部分基于此开发 */
     Chromium
+    /** 旧版的Edge，目前几乎没有人使用（除了部分老的windows10） */
     'Edge(Old)'
+    /** 新版Edge */
     Edge
+    /** 火狐 */
     Firefox
+    /** 苹果Safari */
     Safari
+    /** 世界之窗 */
     Opera
+    /** 其他未知或不兼容的浏览器 */
     Other
   }
 
@@ -134,6 +142,9 @@ export declare namespace BrowserInfo {
 // }
 
 declare global {
+  declare interface WindowEventMap {
+    uachange: (ev: CustomEvent<BrowserInfo.BrowserInfoInstance>) => void
+  }
   declare interface Window {
     $browserInfo: BrowserInfo.BrowserInfoInstance
   }
@@ -141,7 +152,6 @@ declare global {
 }
 
 const browserInfo: BrowserInfo.BrowserInfoInstance
-
 /**
  * 获取浏览器信息，如果传入了info，则更新此对象
  */

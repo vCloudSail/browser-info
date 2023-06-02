@@ -56,8 +56,8 @@ const browserInfo = (window.$browserInfo = getBrowserInfo())
 
 const resizeDeb = debounce(() => {
   if (window.navigator.userAgent !== window.$browserInfo?.$ua) {
-    getBrowserInfo(window.$browserInfo)
-    window.dispatchEvent(new CustomEvent('ua-change'))
+    const newInfo = getBrowserInfo(window.$browserInfo)
+    window.dispatchEvent(new CustomEvent('uachange', { detail: newInfo }))
   }
 }, 100)
 
