@@ -33,12 +33,15 @@ import { parseUserAgent } from './utils'
 let browserInfo = null
 
 if (typeof window !== 'undefined') {
-  browserInfo = parseUserAgent(navigator.userAgent)
+  browserInfo = parseUserAgent(window?.navigator.userAgent)
   window.$browserInfo = browserInfo
 
   const resizeDeb = debounce(() => {
     if (window.navigator.userAgent !== window.$browserInfo?.$ua) {
-      const newInfo = parseUserAgent(window.$browserInfo)
+      const newInfo = parseUserAgent(
+        window.navigator.userAgent,
+        window.$browserInfo
+      )
       window.dispatchEvent(new CustomEvent('uachange', { detail: newInfo }))
     }
   }, 100)

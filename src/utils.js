@@ -1,7 +1,9 @@
-function getBrowerCore() {
-  const ua = navigator.userAgent.toLowerCase()
+function getBrowerCore(userAgent = '') {
+  const ua = userAgent.toLowerCase()
 
-  let core, version, match
+  let core = 'Unkown',
+    version = 'Unkown',
+    match
 
   if (/mise|Trident/gi.test(ua)) {
     // IE内核
@@ -42,7 +44,7 @@ function getBrowerCore() {
  * @returns {import('..').BrowserInfo.BrowserInfoInstance}
  */
 export function parseUserAgent(userAgent, info) {
-  if (!userAgent) return null
+  if (typeof userAgent !== 'string' || userAgent === '') return null
 
   const ua = userAgent.toLowerCase()
 
@@ -69,7 +71,7 @@ export function parseUserAgent(userAgent, info) {
   }
 
   // #region 获取内核及版本
-  const coreInfo = getBrowerCore()
+  const coreInfo = getBrowerCore(ua)
   browserInfo.core = coreInfo.core
   browserInfo.coreVersion = coreInfo.version
 

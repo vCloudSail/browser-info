@@ -11,5 +11,7 @@
 - 支持nodejs环境
 - 支持手动传入userAgent获取浏览器信息
 - 调整getBrowserInfo方法
-  + g改名为parseUserAgent，对外导出名称不变
+  + 改名为parseUserAgent，对外导出名称不变
   + 由调用方传入userAgent参数不再默认获取navigator.userAgent
+# 0.0.4
+- 修复在nodejs环境中使用异常问题
