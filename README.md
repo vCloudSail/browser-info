@@ -27,8 +27,10 @@ npm i @cloudsail/browser-info -S
 ```javascript
 import BrowserInfo, { getBrowerInfo } from "@cloudsail/browser-info";
 
+// 自动获取浏览器信息
+const info = BrowserInfo
 // 手动获取浏览器信息
-const info = getBrowerInfo()
+const info = getBrowerInfo(navigator.userAgent)
 ```
 
 #### 全局变量使用
