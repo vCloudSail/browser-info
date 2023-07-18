@@ -1,5 +1,5 @@
 # @cloudsail/browser-info
-这是一个基于navigator.userAngent分析浏览器信息的工具库
+这是一个基于userAngent分析浏览器信息的工具库
 
 
 **已测试环境**
@@ -27,8 +27,10 @@ npm i @cloudsail/browser-info -S
 ```javascript
 import BrowserInfo, { getBrowerInfo } from "@cloudsail/browser-info";
 
+// 自动获取浏览器信息
+const info = BrowserInfo
 // 手动获取浏览器信息
-const info = getBrowerInfo()
+const info = getBrowerInfo(navigator.userAgent)
 ```
 
 #### 全局变量使用

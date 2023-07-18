@@ -156,6 +156,7 @@ const browserInfo: BrowserInfo.BrowserInfoInstance
  * 获取浏览器信息，如果传入了info，则更新此对象
  */
 export function getBrowserInfo(
+  userAgent: string,
   info?: BrowserInfo.BrowserInfoInstance
 ): BrowserInfo.BrowserInfoInstance
 

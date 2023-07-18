@@ -37,10 +37,14 @@ function getBrowerCore() {
 }
 
 /**
+ * @param {string} userAgent
+ * @param {import('..').BrowserInfo.BrowserInfoInstance} [info]
  * @returns {import('..').BrowserInfo.BrowserInfoInstance}
  */
-export function getBrowserInfo(info) {
-  const ua = navigator.userAgent.toLowerCase()
+export function parseUserAgent(userAgent, info) {
+  if (!userAgent) return null
+
+  const ua = userAgent.toLowerCase()
 
   /**
    * @type {import('..').BrowserInfo.BrowserInfoInstance}
@@ -63,7 +67,7 @@ export function getBrowserInfo(info) {
     /** 终端设备类型 */
     terminalType: ''
   }
-  
+
   // #region 获取内核及版本
   const coreInfo = getBrowerCore()
   browserInfo.core = coreInfo.core

@@ -24,48 +24,31 @@
  */
 
 import { debounce } from 'lodash-es'
-import { getBrowserInfo } from './utils'
+import { parseUserAgent } from './utils'
 
 /**
  * @type {import('..').BrowserInfo.BrowserInfoInstance}
  */
 
-const browserInfo = (window.$browserInfo = getBrowserInfo())
-/**
- *
- * @param {import('vue').App} Vue
- * @param {*} options
- */
-// function install(Vue, options) {
-//   const versionArr = Vue.version?.split('.')
-//   if (versionArr[0] === '3') {
-//     Vue.config.globalProperties.$browserInfo = window.$browserInfo
-//   } else {
-//     Vue.prototype.$browserInfo = window.$browserInfo
-//   }
+let browserInfo = null
 
-//   delete window.$browserInfo.install
-// }
+if (typeof window !== 'undefined') {
+  browserInfo = parseUserAgent(navigator.userAgent)
+  window.$browserInfo = browserInfo
 
-// Object.defineProperty(window.$browserInfo, 'install', {
-//   enumerable: false,
-//   configurable: true,
-//   writable: false,
-//   value: install
-// })
+  const resizeDeb = debounce(() => {
+    if (window.navigator.userAgent !== window.$browserInfo?.$ua) {
+      const newInfo = parseUserAgent(window.$browserInfo)
+      window.dispatchEvent(new CustomEvent('uachange', { detail: newInfo }))
+    }
+  }, 100)
 
-const resizeDeb = debounce(() => {
-  if (window.navigator.userAgent !== window.$browserInfo?.$ua) {
-    const newInfo = getBrowserInfo(window.$browserInfo)
-    window.dispatchEvent(new CustomEvent('uachange', { detail: newInfo }))
-  }
-}, 100)
+  window.removeEventListener('resize', resizeDeb)
+  window.addEventListener('resize', resizeDeb, {
+    passive: true
+  })
+}
 
-window.removeEventListener('resize', resizeDeb)
-window.addEventListener('resize', resizeDeb, {
-  passive: true
-})
+export { parseUserAgent as getBrowserInfo }
 
-export { getBrowserInfo }
-
-export default window.$browserInfo
+export default browserInfo
