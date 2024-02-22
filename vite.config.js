@@ -26,7 +26,8 @@ export default defineConfig(({ mode, ssrBuild, command }) => {
   return {
     publicDir: command === 'serve' ? './demo/public' : '',
     server: {
-      host: '0.0.0.0'
+      host: '0.0.0.0',
+      port: 11230
     },
     resolve: {
       alias: [
@@ -46,7 +47,7 @@ export default defineConfig(({ mode, ssrBuild, command }) => {
       // 打包分析插件建议放到最后
       rollupVisualizer({
         emitFile: false,
-        filename: 'report.html', //分析图生成的文件名
+        filename: 'report.html' //分析图生成的文件名
         // open: true //如果存在本地服务端口，将在打包后自动展示
       })
     ],
@@ -60,4 +61,3 @@ export default defineConfig(({ mode, ssrBuild, command }) => {
     }
   }
 })
-

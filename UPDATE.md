@@ -15,3 +15,7 @@
   + 由调用方传入userAgent参数不再默认获取navigator.userAgent
 # 0.0.4
 - 修复在nodejs环境中使用异常问题
+  
+# 0.1.0
+- 增加对小米浏览器的支持
+- README文档增加UA大全

@@ -157,8 +157,13 @@ export function parseUserAgent(userAgent, info) {
     browserInfo.name = '三星浏览器'
     browserInfo.type = 'Chromium'
   } else if (/heytapbrowser/gi.test(ua)) {
-    browserInfo.name = 'ColorOS浏览器'
+    browserInfo.name = 'OPPO浏览器'
     browserInfo.type = 'Chromium'
+    browserInfo.terminalType = 'Mobile'
+  } else if (/swan-mibrowser/gi.test(us)) {
+    browserInfo.name = '小米浏览器'
+    browserInfo.type = 'Chromium'
+    browserInfo.terminalType = 'Mobile'
   }
 
   if (!browserInfo.name) {
